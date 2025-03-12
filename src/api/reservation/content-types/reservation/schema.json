@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reservations",
+  "info": {
+    "singularName": "reservation",
+    "pluralName": "reservations",
+    "displayName": "Reservation",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "date": {
+      "type": "datetime",
+      "required": true
+    },
+    "complex": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::complex.complex",
+      "inversedBy": "reservations"
+    },
+    "state": {
+      "type": "enumeration",
+      "enum": [
+        "PENDING",
+        "CONFIRMED",
+        "REJECTED",
+        "CANCELED"
+      ],
+      "required": true,
+      "default": "PENDING"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "reservations"
+    }
+  }
+}

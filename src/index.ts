@@ -1,20 +1,32 @@
-// import type { Core } from '@strapi/strapi';
-
 export default {
-  /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
-   */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
-
-  /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
-   */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
-};
+    register() {},
+    
+    async bootstrap({ strapi }) {
+      strapi.admin.services.permission.conditionProvider.register({
+        displayName: 'Is Complex owneRRRRR',
+        name: 'is-complex-owner',
+        plugin: 'admin',
+        handler: (user) => {
+          return {
+            $or: [
+              {
+                complex: {
+                  admin_user: {
+                    id: {
+                      $eq: user.id
+                    }
+                  }
+                }
+              },
+              {
+                'complex.admin_user.id': {
+                  $eq: user.id
+                }
+              }
+            ]
+          };
+        }
+      });
+    }
+  };
+  

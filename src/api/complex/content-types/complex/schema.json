@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "complexes",
+  "info": {
+    "singularName": "complex",
+    "pluralName": "complexes",
+    "displayName": "Complex",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "openTime": {
+      "type": "time",
+      "required": false,
+      "default": "08:00:00.000"
+    },
+    "closeTime": {
+      "type": "time",
+      "default": "00:00:00.000"
+    },
+    "address": {
+      "type": "json",
+      "required": true
+    },
+    "admin_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
+    },
+    "reservations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reservation.reservation",
+      "mappedBy": "complex"
+    }
+  }
+}
