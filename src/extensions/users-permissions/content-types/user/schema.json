@@ -65,14 +65,14 @@
       "inversedBy": "users",
       "configurable": false
     },
+    "phoneNumber": {
+      "type": "integer"
+    },
     "reservations": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::reservation.reservation",
-      "mappedBy": "users_permissions_user"
-    },
-    "phoneNumber": {
-      "type": "integer"
+      "mappedBy": "user"
     }
   }
 }
