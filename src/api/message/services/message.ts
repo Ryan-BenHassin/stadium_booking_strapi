@@ -4,6 +4,7 @@
 
 import { factories } from '@strapi/strapi';
 import { db } from '../../../utils/firebase';
+import admin from '../../../utils/firebase';
 
 const getBaseService = factories.createCoreService('api::message.message');
 

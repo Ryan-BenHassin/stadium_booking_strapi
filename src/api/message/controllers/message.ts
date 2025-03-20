@@ -27,20 +27,25 @@ export default {
           .orderBy('createdAt', 'desc')
           .get();
         
-        messagesRef.docs.forEach(messageDoc => {
+        for (const messageDoc of messagesRef.docs) {
           const data = messageDoc.data();
-          allMessages.push({
+          const messageData = {
             id: messageDoc.id,
             chatRoomId: roomId,
-            content: data.content || data.message, // Handle both old and new format
-            sender: data.sender || data.senderId, // Handle both formats
-            receiver: data.receiver || data.receiverId,
+            content: data.content || data.message,
+            sender: parseInt(data.sender || data.senderId),
+            receiver: parseInt(data.receiver || data.receiverId),
             senderEmail: data.senderEmail,
             createdAt: data.createdAt?.toDate?.() || data.timestamp?.toDate?.() || new Date(),
             updatedAt: data.updatedAt?.toDate?.() || data.timestamp?.toDate?.() || new Date(),
             publishedAt: data.published_at?.toDate?.() || data.timestamp?.toDate?.() || new Date()
-          });
-        });
+          };
+          
+          // Sync each message with Strapi
+          await strapi.service('api::message.message').syncMessage(messageData);
+          
+          allMessages.push(messageData);
+        }
       }
 
       console.log(`Total messages found: ${allMessages.length}`);

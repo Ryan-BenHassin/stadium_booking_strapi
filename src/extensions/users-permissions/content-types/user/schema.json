@@ -93,7 +93,10 @@
     },
     "authProvider": {
       "type": "enumeration",
-      "enum": ["local", "firebase"],
+      "enum": [
+        "local",
+        "firebase"
+      ],
       "default": "local"
     }
   }

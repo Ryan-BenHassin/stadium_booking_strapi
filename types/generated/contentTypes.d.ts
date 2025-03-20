@@ -418,7 +418,7 @@ export interface ApiMessageMessage extends Struct.CollectionTypeSchema {
     singularName: 'message';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     chatRoomId: Schema.Attribute.String & Schema.Attribute.Required;
