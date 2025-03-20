@@ -12,10 +12,12 @@
   },
   "attributes": {
     "content": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "timestamp": {
-      "type": "datetime"
+      "type": "datetime",
+      "required": true
     },
     "sender": {
       "type": "relation",
@@ -28,6 +30,14 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "messages"
+    },
+    "firebaseId": {
+      "type": "string",
+      "unique": true
+    },
+    "chatRoomId": {
+      "type": "string",
+      "required": true
     }
   }
 }
