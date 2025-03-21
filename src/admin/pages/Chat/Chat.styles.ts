@@ -25,3 +25,21 @@ export const Message = styled.div<{ isAdmin: boolean }>`
     isAdmin ? theme.colors.primary200 : theme.colors.neutral200};
   align-self: ${({ isAdmin }) => (isAdmin ? 'flex-end' : 'flex-start')};
 `;
+
+export const ConversationList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const ConversationItem = styled.div<{ selected?: boolean }>`
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  background: ${({ selected, theme }) => 
+    selected ? theme.colors.primary100 : 'transparent'};
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primary100};
+  }
+`;

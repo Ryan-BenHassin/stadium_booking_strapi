@@ -25,6 +25,16 @@ export default {
         middlewares: [],
         auth: false
       },
+    },
+    {
+      method: 'GET',
+      path: '/messages/users',  // Changed from /users to /messages/users
+      handler: 'message.getUsers',
+      config: {
+        policies: [],
+        middlewares: [],
+        auth: false
+      },
     }
   ],
 };

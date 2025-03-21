@@ -8,6 +8,21 @@ import admin, { db } from '../../../utils/firebase';
 export default {
   ...factories.createCoreController('api::message.message'),
 
+  async getUsers(ctx) {
+    try {
+      const users = await strapi.db.query('plugin::users-permissions.user').findMany({
+        select: ['id', 'email', 'username']
+      });
+      
+      return {
+        data: users
+      };
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      return ctx.badRequest("Failed to fetch users");
+    }
+  },
+
   async find(ctx) {
     try {
       console.log("Fetching messages from Firebase...");
