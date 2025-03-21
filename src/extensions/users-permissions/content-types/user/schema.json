@@ -98,6 +98,9 @@
         "firebase"
       ],
       "default": "local"
+    },
+    "fcmToken": {
+      "type": "string"
     }
   }
 }

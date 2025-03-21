@@ -958,6 +958,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    fcmToken: Schema.Attribute.String;
     firebaseUid: Schema.Attribute.String &
       Schema.Attribute.Private &
       Schema.Attribute.Unique;
