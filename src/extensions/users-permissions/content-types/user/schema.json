@@ -86,19 +86,6 @@
       "target": "api::message.message",
       "mappedBy": "recipient"
     },
-    "firebaseUid": {
-      "type": "string",
-      "unique": true,
-      "private": true
-    },
-    "authProvider": {
-      "type": "enumeration",
-      "enum": [
-        "local",
-        "firebase"
-      ],
-      "default": "local"
-    },
     "fcmToken": {
       "type": "string"
     }

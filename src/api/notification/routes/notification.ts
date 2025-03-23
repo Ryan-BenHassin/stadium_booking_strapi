@@ -8,5 +8,13 @@ export default {
         policies: ['admin::isAuthenticatedAdmin'],
       },
     },
+    {
+      method: 'POST',
+      path: '/notify-user',
+      handler: 'notification.notifyUser',
+      config: {
+        policies: ['admin::isAuthenticatedAdmin'],
+      },
+    },
   ],
 };

@@ -4,4 +4,6 @@
 
 import { factories } from '@strapi/strapi'
 
-export default factories.createCoreController('api::reservation.reservation');
+const { createCoreController } = factories;
+
+export default createCoreController('api::reservation.reservation');

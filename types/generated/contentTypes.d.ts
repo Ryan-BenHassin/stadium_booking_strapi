@@ -378,7 +378,7 @@ export interface ApiComplexComplex extends Struct.CollectionTypeSchema {
     singularName: 'complex';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
     address: Schema.Attribute.JSON & Schema.Attribute.Required;
@@ -945,8 +945,6 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
-    authProvider: Schema.Attribute.Enumeration<['local', 'firebase']> &
-      Schema.Attribute.DefaultTo<'local'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -959,9 +957,6 @@ export interface PluginUsersPermissionsUser
         minLength: 6;
       }>;
     fcmToken: Schema.Attribute.String;
-    firebaseUid: Schema.Attribute.String &
-      Schema.Attribute.Private &
-      Schema.Attribute.Unique;
     firstname: Schema.Attribute.String;
     lastname: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;

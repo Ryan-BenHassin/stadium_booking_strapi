@@ -29,5 +29,33 @@ export default {
     } catch (error) {
       return ctx.badRequest(error.message);
     }
+  },
+
+  async notifyUser(ctx) {
+    try {
+      const { userId, message, title } = ctx.request.body;
+
+      if (!userId) {
+        return ctx.badRequest('User ID is required');
+      }
+
+      const user = await strapi.db.query('plugin::users-permissions.user').findOne({
+        where: { id: userId },
+        select: ['fcmToken']
+      });
+
+      if (!user?.fcmToken) {
+        return ctx.badRequest('No valid FCM token found for the specified user');
+      }
+
+      await sendNotification([user.fcmToken], { title, message });
+
+      return ctx.send({
+        success: true,
+        message: 'Notification sent successfully'
+      });
+    } catch (error) {
+      return ctx.badRequest(error.message);
+    }
   }
 };
